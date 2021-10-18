@@ -1,0 +1,149 @@
+/* global styles */
+:root {
+  --bk-color: #61adeb;
+  --md-color: #2971ac;
+  --dk-color: #064374;
+  --font-heading: "Courgette", cursive;
+}
+body {
+  padding: 0;
+  background-color: var(--bk-color);
+  color: var(--md-color);
+}
+
+a {
+  color: var(--dk-color);
+}
+
+a:hover {
+  color: var(--bk-color);
+}
+
+/* header global styling */
+nav {
+  background-color: rgba(225, 225, 225, 0.6);
+  border-radius: 50px;
+  width: 90%;
+  margin: auto;
+}
+
+.brand-header {
+  padding-left: 1vw;
+}
+
+#navbarNavDropdown {
+  justify-content: flex-end;
+}
+
+.navbar-toggler {
+  margin-right: 2vw;
+}
+
+/* footer global styling */
+.footer-section {
+  height: 50vh;
+  background-color: rgba(225, 225, 225, 0.6);
+}
+
+.footer-section > .row {
+  height: 50vh;
+  align-items: center;
+  align-content: space-evenly;
+}
+
+.footer-section > .row,
+.footer-links {
+  display: flex;
+  justify-content: space-around;
+}
+
+.footer-links .nav-link:hover {
+  outline: 1px solid var(--bk-color);
+}
+
+.footer-games-link {
+  display: none;
+}
+
+.footer-social-link {
+  padding-top: 0;
+}
+
+/* hero image global styling */
+#home {
+  padding: 0;
+  position: relative;
+  top: calc(-5rem + 1vw);
+}
+
+.hero-image {
+  object-position: 50% 50%;
+  object-fit: cover;
+  width: 100%;
+  height: 102vh;
+}
+
+.greeting-wrapper {
+  position: relative;
+  top: -20rem;
+  padding: 0 5vw;
+  background-color: rgba(97, 173, 235, 0.6);
+  font-family: var(--font-heading);
+}
+
+.greeting::before {
+  content: "Hear";
+  animation: senses infinite 10s;
+}
+
+@keyframes senses {
+  0% {
+    content: "Hear";
+  }
+  15% {
+    content: "Hear the Call of the Wild";
+  }
+  35% {
+    content: "Feel";
+  }
+  50% {
+    content: "Feel Tropical Warmth";
+  }
+  65% {
+    content: "Smell";
+  }
+  80% {
+    content: "Smell Fresh Air";
+  }
+}
+
+@media screen and (min-width: 768px) {
+  nav {
+    width: 70%;
+  }
+  .footer-section,
+  .footer-section > .row {
+    height: 20vh;
+  }
+  .footer-social-link {
+    padding-top: 0.5rem;
+  }
+  .footer-print {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .footer-section,
+  .footer-section > .row {
+    height: 30vh;
+  }
+  .copyright-text {
+    display: flex;
+  }
+  .footer-print {
+    flex-direction: row;
+    justify-content: center;
+  }
+}

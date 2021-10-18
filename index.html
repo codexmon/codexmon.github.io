@@ -4,9 +4,111 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello</title>
+    <title>codexmon</title>
+    <!-- favicon -->
+    <link rel="icon" type="image/png" href="assets/codexmon-logo-xs.png">
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- Font library -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <h1>Hello World!</h1>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand brand-header" href="#">
+                <img src="assets/codexmon-logo-xs.png" alt="codexmon logo" width="30" height="24"
+                    class="d-inline-block align-text-top">
+                codexmon
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#donate">Donate</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#games">Games</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/codexmon/"><img class="github-header" alt="GitHub" id="header-github"
+                            src="assets/github-dark.png" /></a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="https://linkedin.com"><img class="linkedin-header" alt="LinkedIn" id="header-linkedin"
+                            src="assets/linkedin-dark.png" /></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div id="home" class="container-fluid content-section">
+        <img class="img-fluid hero-image" src="assets/sky.jpg" alt="sunlit sky with birds flying across above a beach ebbing and flowing of gentle rolling waves">
+        <div class="greeting-wrapper display-1">
+            <p class="text-center"><span class="greeting"></span></p>
+        </div>
+    </div>
+    <div id="home" class="container-fluid content-section">
+        
+    </div>
+    <div class="container-fluid footer-section">
+        <div class="row">
+            <div class="col-sm-12 col-md-4 col-lg-3 copyright-text text-center">
+                <a class="navbar-brand" href="#">
+                    <img src="assets/codexmon-logo-xs.png" alt="codexmon logo" width="30" height="24"
+                        class="d-inline-block align-text-top">
+                    codexmon
+                </a>
+            </div>
+            <div class="col-sm-12 col-md-8 col-lg-6 col-xl-5 footer-nav">
+                <ul class="nav footer-links">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#donate">Donate</a>
+                    </li>
+                    <li class="nav-item footer-games-link">
+                        <a class="nav-link" href="#games">Games</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link footer-social-link" href="https://github.com/codexmon/"><img class="github" alt="GitHub"
+                                src="assets/github-dark.png" style="height:1em;width:auto" />&nbsp;GitHub</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link footer-social-link" href="https://linkedin.com"><img class="linkedin" alt="LinkedIn"
+                                src="assets/linkedin-dark.png" style="height:1em;width:auto" />&nbsp;LinkedIn</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm-12 text-center footer-print">
+                <span>© 2021 Gloria Ng. All rights reserved.</span>
+                <span>In memory of my father，吳漢強，吴汉强，Hon Keung Ng</span>
+                <span>(September 28, 1949 - April 28, 2020).</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bootstrap CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <!-- Custom JS -->
+    <script src="js/custom.js"></script>
 </body>
 </html>
