@@ -23,6 +23,10 @@ a:hover {
   text-decoration: none;
 }
 
+.md-color {
+  color: var(--md-color);
+}
+
 .donate-link {
   color: lightblue;
 }
