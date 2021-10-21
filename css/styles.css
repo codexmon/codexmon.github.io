@@ -261,6 +261,7 @@ nav {
   #about {
     position: relative;
     top: -13vh;
+    margin-bottom: -10vw;
   }
   #donate {
     height: 100vh;
@@ -318,5 +319,11 @@ nav {
   .footer-print {
     flex-direction: row;
     justify-content: center;
+  }
+}
+
+@media screen and (min-width: 1200px) and (orientation: landscape) {
+  #about {
+    margin: -6vw 0 -8vw;
   }
 }
