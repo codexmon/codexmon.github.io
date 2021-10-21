@@ -19,12 +19,24 @@ a:hover {
   color: var(--bk-color);
 }
 
+.text-link {
+  text-decoration: none;
+}
+
+.donate-link {
+  color: lightblue;
+}
+
 /* header global styling */
 nav {
   background-color: rgba(225, 225, 225, 0.6);
   border-radius: 50px;
   width: 90%;
   margin: auto;
+}
+
+.sticky-top {
+  top: 3vw;
 }
 
 .brand-header {
@@ -37,6 +49,10 @@ nav {
 
 .navbar-toggler {
   margin-right: 2vw;
+}
+
+.header-dropdown {
+  padding-left: 3vw;
 }
 
 /* footer global styling */
@@ -89,6 +105,7 @@ nav {
   padding: 0 5vw;
   background-color: rgba(97, 173, 235, 0.6);
   font-family: var(--font-heading);
+  height: 5.75rem;
 }
 
 .greeting::before {
@@ -107,13 +124,80 @@ nav {
     content: "Feel";
   }
   50% {
-    content: "Feel Tropical Warmth";
+    content: "Feel Tropical Breeze";
   }
   65% {
     content: "Smell";
   }
   80% {
     content: "Smell Fresh Air";
+  }
+}
+
+/* about content section styling */
+#about {
+  background-image: url("../assets/hacktoberfest.jpg");
+  background-size: cover;
+  background-position-x: right;
+  background-color: gray;
+  background-blend-mode: multiply;
+  color: var(--bk-color);
+  position: relative;
+  top: -13vh;
+  margin: -30vw 0vw -31vw;
+}
+
+#about > .row {
+  padding: 33vw 5vw;
+}
+
+/* donate content section styling */
+#donate {
+  background-image: url("../assets/bamboo.jpg");
+  background-blend-mode: multiply;
+  background-color: var(--md-color);
+  background-size: cover;
+  padding-top: 15vh;
+  height: 130vh;
+  color: white;
+}
+
+/* games content section styling */
+#games {
+  padding: 20vw 10vw;
+}
+
+#games > .row {
+  justify-content: space-evenly;
+}
+
+.games-card {
+  padding-top: 1vw;
+  background-color: transparent;
+  margin-bottom: 5vw;
+}
+
+.games-card > img {
+  height: 60%;
+}
+
+.card-body-padding {
+  padding: 16px 0;
+}
+
+.lotus-image {
+  border: 1px solid var(--md-color);
+}
+
+@media screen and (min-width: 350px) {
+  #donate {
+    height: 100vh;
+  }
+}
+
+@media screen and (min-width: 400px) {
+  #donate {
+    height: 90vh;
   }
 }
 
@@ -132,9 +216,98 @@ nav {
     display: flex;
     flex-direction: column;
   }
+  /* about content section styling */
+  #about {
+    position: relative;
+    top: -8vh;
+    margin: -11vw 0vw;
+  }
+  #about > .row {
+    padding: 15vw 5vw;
+  }
+  #donate {
+    height: 60vh;
+  }
+  #games {
+    padding: 10vw;
+  }
+  .games-card {
+    width: 48%;
+  }
+  .games-card > img {
+    height: 30vw;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  /* about content section styling */
+  #about {
+    position: relative;
+    top: -5vh;
+  }
+  #donate {
+    height: 50vh;
+  }
+  .games-card {
+    width: 30%;
+  }
+  .games-card > img {
+    height: 20vw;
+  }
+}
+
+@media screen and (min-width: 1024px) and (orientation: landscape) {
+  /* about content section styling */
+  #about {
+    position: relative;
+    top: -13vh;
+  }
+  #donate {
+    height: 100vh;
+  }
+  .donate-text {
+    height: 52vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3vw;
+  }
+  .trees {
+    background-image: url("../assets/trees-birdseye.jpg");
+    background-color: var(--bk-color);
+    background-blend-mode: multiply;
+  }
+  .resources {
+    background-image: url("../assets/resources.jpg");
+    background-size: cover;
+    background-position-y: center;
+    background-color: var(--bk-color);
+    background-blend-mode: multiply;
+  }
+  .funds {
+    background-image: url("../assets/funds.jpg");
+    background-size: cover;
+    background-color: var(--md-color);
+    background-blend-mode: multiply;
+  }
+  .footer-section,
+  .footer-section > .row {
+    height: 40vh;
+  }
 }
 
 @media screen and (min-width: 1200px) {
+  .sticky-top {
+    top: 1vw;
+  }
+  #about {
+    height: 100vh;
+    background-position-y: bottom;
+  }
+  #about > .row {
+    padding: 10vw 5vw;
+  }
   .footer-section,
   .footer-section > .row {
     height: 30vh;
