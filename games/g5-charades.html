@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+ <title>G5 Charades Generator</title>
+    <!--Bootstrap CDN-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <style>
+      body {
+        background: yellow;
+        color: blue;
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+      }
+      h1 {
+        text-align: center;
+      }
+      #word {
+        border-radius: 100px;
+        border: 1px solid blue;
+        margin-bottom: 10px;
+      }
+      #display {
+        padding: 15px 0px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-content: center;
+      }
+      #display * {
+        text-align: center;
+        margin-bottom: 0px;
+      }
+      #char {
+        font-size: 3em; 
+      }
+      #pinyin {
+        font-size: 1em;
+      }
+      #yingwen {
+        font-size: 1.5em;
+      }
+      #buttons {
+        margin-bottom: 30px;
+      }
+      .ruleszw, .rulesyw, .scroll {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>G5 Charades</h1>
+    <h1>五年级娱乐游戏</h1>
+    <div class="container" id="word">
+      <div class="row" id="display">
+        <p id="char"></p>
+        <p id="pinyin">Choose a language to start the game!<br>请选择一种语言来开始玩游戏！</p>
+        <p id="yingwen"></p>
+      </div>
+    </div>
+   <div class="container" id="buttons">
+    <div class="row">
+      <div class="col text-center">
+          <div id="shijian">
+            <span id="jishi">
+              <span id="miao">60</span> 秒      
+            </span>
+            <h4 id="meishi">没时间了</h4>
+          </div>
+          <div id="timewrap">
+            <span id="timer">
+              <span id="time">60</span> seconds      
+            </span>
+            <h4 id="timeout">Time is up</h4>
+          </div>
+        <button class="btn btn-success" id="chinese">中文</button>
+        <button class="btn btn-success" id="english">English</button>
+        <button class="btn btn-success" id="kaishi">开始</button>
+        <button class="btn btn-success" id="start">Start</button>
+        <button class="btn btn-primary" id="xiage">下个字</button>
+        <button class="btn btn-primary" id="next">Next Word</button>
+        <button class="btn btn-danger" id="ting" disabled>停</button>
+        <button class="btn btn-danger" id="disabled" disabled>Stop</button>
+        <button class="btn btn-primary" id="chongzhi" >重置</button>
+        <button class="btn btn-primary" id="reset">Next Round</button>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+   <div class="row">
+      <div class="col text-center">
+        <img src="https://images.unsplash.com/photo-1563204996-8965f0a4a860?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2468&q=80" class="img-fluid" alt="giraffe" />
+      </div>
+      <div class="col text-center rulesyw">
+        <h2>The Rules</h2>
+        <button type="button" class="btn btn-link btn-ruleszw">中文规则</button>
+        <ul class="list-group">
+           <li class="list-group-item">You will be assigned to 1 of 2 teams.</li>
+           <li class="list-group-item">Each team must select someone who can act out a word or phrase.</li>
+           <li class="list-group-item">The actor can choose to act out the word or pass to select another word to act out.</li>
+           <li class="list-group-item">A team will have 60 seconds to guess as many words as they can.</li>
+           <li class="list-group-item">Then the other team takes their turn.</li>
+           <li class="list-group-item">The team with the most points wins the round and gets to go first the next round!</li>
+           <li class="list-group-item">Ready? Click the green button to play.</li>
+        </ul>
+      </div>
+      <div class="col text-center ruleszw">
+        <h2>规则</h2>
+        <button type="button" class="btn btn-link btn-rulesyw">English Rules</button>
+        <ul class="list-group">
+           <li class="list-group-item">你将被分配给2个团队中的1个。</li>
+           <li class="list-group-item">每个团队都必须选出能够表现出单词或短语的人。</li>
+           <li class="list-group-item">演员可以选择执行该单词或通过选择另一个单词来执行。</li>
+           <li class="list-group-item">一个团队将有60秒的时间来猜测尽可能多的单词。</li>
+           <li class="list-group-item">然后另一支球队轮到他们了。</li>
+           <li class="list-group-item">得分最高的团队将赢得本轮比赛，并在下一轮比赛中首发！</li>
+           <li class="list-group-item">准备好了吗？ 单击绿色按钮以开始游戏。</li>
+        </ul>
+      </div>
+      <div class="col text-center" >
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/37/African_Bush_Elephant.jpg" class="img-fluid" alt="elephant" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col text-center">
+        <p>©2020 Gloria Ng. All rights reserved.<br>In memory of my father，吳漢強，吴汉强，Hon Keung Ng (September 28, 1949 - April 28, 2020).<br>Dedicated on this day of September 28, 2020. <span class="btn btn-link btn-more">More</span><span class="scroll">Scroll down to view</span></p>
+        <div id="bio">
+          <h2>Humble Beginnings</h2>
+          <p>My dad grew up in a farming village in Canton province. Electricity was absent. Shoes, if afforded, were shared among his siblings. Paper for homework, if existent, was used and reused. Education was a privilege that his family could not afford beyond grade school. He lost his father when he was three years old, when his father was falsely accused of being anti-Communist and therefore punishable by death. Many meals were ultra-watery rice gruel with bits of yam. He spent many days sleeping outside in the fields with much work to do instead of heading home for bed.</p>
+          <h2>Emigration and Immigration</h2>
+          <p>The shortest distance between China and Hong Kong, which was under British rule at the time, was 4 kilometers of water. That is 4000 meters. He made the trek. Twice. The first time he was deported back. The second time he gained refugee status and was permitted to stay in Hong Kong. He was industrious in all kinds of manual labor, including work in a laundromat. However, it was in sales and manufacturing that he would find much success. A U.S.-based colleague in the import-export industry saw his potential and sponsored him and his family to stay in the U.S.</p>
+          <h2>Computer Sciences</h2>
+          <p>Once my dad got to the U.S., he saw a lot of promise in computer sciences and immediately enrolled in college to pursue a bachelor's degree. It took him 7 years. Due to cultural and language differences, he was unable to get a job in this industry. However, he applied the skills he gained to sales and manufacturing and sold a program to fellow colleagues that would keep track of their inventory, invoicing, and product labeling.</p>
+          <h2>HTML, CSS, JS</h2>
+          <p>What we see on a website is commonly a combination of three things:<br>HTML (markup language), CSS (web technology for styling), JS (scripting language).</p>
+            * If HTML is indeed the structure/house (and my dad has erected a couple of these before — in mainland China);<br>
+            * If CSS is indeed the design and presentation (and my dad does have a knack for functional aesthetics);<br>
+            * If JS is indeed the handyman that builds new rooms and functionalities and given that JS can even add nodes to HTML and inline CSS to these nodes (and my dad has indeed expanded his last place of residence with multiple rooms, multiple bathrooms, an additional kitchen, knocking down walls and building them to move a doorway, etc.);<br>
+          <br>
+          <p>Then my dad, who was exceptional at hacking life, he was JavaScript.</p>
+          <h2>My Father’s Daughter</h2>
+          <p>I considered my dad and me as quite different and on opposite ends of a spectrum because I was very much occupied in the liberal arts for most of my life. As the years go by, I have gained great interest and appreciation in software engineering and how the field can enhance human-computer interaction.</p>
+          <p>After researching some potential word sets for a game I wished to play with kids, I saw the lack of age- and language-appropriate platforms. So I began to create this game. I wanted to make this game accessible to speakers of Chinese and English, and customize it for a certain age level. In reflecting about my recent entry into web development, I realize I am very much my father’s daughter.</p>
+          <button class="btn btn-link btn-less">Less</button>
+      </div>
+      </div>
+    </div>
+  </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://apis.google.com/js/api.js?onload=onApiLoad">
+</script>
+    <script>
+      window.addEventListener('load', function() {
+        console.log('Page is loaded');
+      });
+    // Must include:
+    // 1. In this HTML file, the above boiler plate script for event listener
+    // 2. In code.gs, the doGet boiler plate code.
+    // 3. Must Publish to deploy the web app. Dialog box opens:
+       // a. Make sure Project is "New"
+       // b. Make sure only I execute the app so only I need to authorize the scripts.
+       // c. Make sure anyone on the web can access the app.
+   $(document).ready(function(){
+    
+    var words = ["Abraham Lincoln",
+"Airplane",
+"Albert Einstein",
+"Alice's Adventures in Wonderland",
+"Alligator",
+"Amelia Earhart",
+"American Idol",
+"Angelina Ballerina",
+"Archery",
+"Arm",
+"Babe",
+"Babe Ruth",
+"Balloon",
+"Bambi",
+"Banana",
+"Barack Obama",
+"Baseball",
+"Basketball",
+"Beauty and the Beast",
+"Bee",
+"Belly",
+"Bird",
+"Blanket",
+"Bob the Builder",
+"Book",
+"Boss Baby",
+"Bruno Mars",
+"Brushing teeth",
+"Bubblegum",
+"Buckingham Palace",
+"Building a sandcastle",
+"Bumblebee",
+"Burping a baby",
+"Buttons",
+"Camera",
+"Can't Stop the Feeling",
+"Captain Underpants",
+"Cat",
+"Cats and Dogs",
+"Chair",
+"Changing a diaper",
+"Cheek",
+"Chicken",
+"Chicken Little",
+"Chin",
+"Cinderella",
+"Circle",
+"Clap",
+"Clarinet/recorder",
+"Cooking pancakes",
+"Cow",
+"Curious George",
+"Dancing",
+"Diary of a Wimpy Kid",
+"Doctor",
+"Dog",
+"Dora the Explorer",
+"Drink",
+"Driving a car",
+"Drums",
+"Ear",
+"Eiffel Tower",
+"Elephant",
+"Elephant and Piggie",
+"Feeding a baby a bottle",
+"Finding Nemo",
+"Fire Truck",
+"Firefighter",
+"Fish",
+"Flower",
+"Flute",
+"Football",
+"French fries",
+"Frozen",
+"George Washington",
+"Giraffe",
+"Gloves",
+"Go, Diego, Go",
+"Going to the hospital/doctor",
+"Goldilocks and The Three Bears",
+"Golf",
+"Grand Canyon",
+"Grass",
+"Great Wall of China",
+"Guitar",
+"Harry Potter",
+"Harry Potter and the Goblet of Fire",
+"Harry Potter and the Sorcerer's Stone",
+"Holes",
+"Home",
+"Horse",
+"Hula Hoop",
+"Ice cream",
+"Ice cream cone",
+"Isaac Newton",
+"Jar",
+"Jello",
+"Jump",
+"Kangaroo",
+"Lab Rats",
+"Laptop",
+"Let It Go",
+"Lion",
+"Little Red Riding Hood",
+"Liv and Maddie",
+"Loud",
+"Milk",
+"Moana",
+"Monkey",
+"Moon",
+"Mosquito",
+"Mount Everest",
+"Mount Rushmore",
+"Mouth",
+"Music conductor",
+"Neil Armstrong",
+"Niagara Falls",
+"Opening a gift",
+"Owl",
+"Penguin",
+"Photography",
+"Piano",
+"Pig",
+"Pillow",
+"Pinch",
+"Pirates of the Caribbean",
+"Pizza",
+"Playing baseball",
+"Point",
+"Polce officer",
+"Popcorn",
+"President",
+"Princess Cupcake Jones and the Missing Tutu",
+"Pro wrestler",
+"Pushing a baby in a stroller",
+"Quiet",
+"Rabbit",
+"Rapunzel",
+"Rihanna",
+"Robot",
+"Rock",
+"Sandwich",
+"Santa Claus",
+"Saxophone",
+"Scissors",
+"Seattle Space Needle",
+"Serena Williams",
+"Sewing",
+"Shoes",
+"Shopping for groceries",
+"Shoveling snow",
+"Sid the Science Kid",
+"Singing",
+"Sit",
+"Skateboarding",
+"Skiing",
+"Sleep",
+"Sleeping Beauty",
+"Smell",
+"Smile",
+"Smokey Mountains",
+"Snake",
+"Sneeze",
+"Snow White and the Seven Dwarves",
+"Soccer",
+"Spaghetti",
+"Spider",
+"Spiderman",
+"Spongebob Squarepants",
+"Squirrel",
+"Stairs",
+"Stand",
+"Stand-up bass",
+"Star",
+"Statue of Liberty",
+"Sun",
+"Sunglasses",
+"Superman",
+"Swimming",
+"Tablet",
+"Taco",
+"Tail",
+"Taking a bath/shower",
+"Taylor Swift",
+"Teacher",
+"Telephone",
+"Tennis",
+"The Boy Who Cried Wolf",
+"The Cat in the Hat",
+"The Emperor's New Clothes",
+"The Giving Tree",
+"The Gruffalo",
+"The Jungle Book",
+"The Karate Kid",
+"The Lego Movie",
+"The Lion King",
+"The Lion, the Witch and the Wardrobe",
+"The Little Mermaid",
+"The Very Hungry Caterpillar",
+"The Wiggles",
+"Tiger",
+"Tightrope walking",
+"Tiptoe",
+"Toy Story",
+"Tree",
+"Trombone",
+"Trumpet",
+"Tuba",
+"Twinkle, Twinkle, Little Star",
+"Tying a shoe",
+"Typing",
+"Usain Bolt",
+"Vincent van Gogh",
+"Violin",
+"Waiter/server",
+"Walking a dog",
+"Where the Wild Things Are",
+"Wig",
+"Yoga",
+"You are My Sunshine"];
+
+var wordsK = [
+{char: "一",pinyin: "yī",english:"one"},
+{char: "二",pinyin: "èr",english:"two"},
+{char: "三",pinyin: "sān",english:"three"},
+{char: "四",pinyin: "sì",english:"four"},
+{char: "五",pinyin: "wǔ",english:"five"},
+{char: "六",pinyin: "liù",english:"six"},
+{char: "七",pinyin: "qī",english:"seven"},
+{char: "八",pinyin: "bā",english:"eight"},
+{char: "九",pinyin: "jiǔ",english:"nine"},
+{char: "十",pinyin: "shí",english:"ten"},
+{char: "人",pinyin: "rén",english:"people"},
+{char: "口",pinyin: "kǒu",english:"mouth"},
+{char: "日光",pinyin: "rìguāng",english:"sunlight"},
+{char: "手",pinyin: "shǒu",english:"hand"},
+{char: "大",pinyin: "dà",english:"big"},
+{char: "小",pinyin: "xiǎo",english:"small"},
+{char: "上",pinyin: "shàng",english:"on"},
+{char: "下",pinyin: "xià",english:"under"},
+{char: "月亮",pinyin: "yuèliàng",english:"moon"},
+{char: "天空",pinyin: "tiānkōng",english:"sky"},
+{char: "白色",pinyin: "báisè",english:"white"},
+{char: "生活",pinyin: "shēnghuó",english:"life"},
+{char: "工作",pinyin: "gōngzuò",english:"jobs"},
+{char: "力",pinyin: "lì",english:"force"},
+{char: "早",pinyin: "zǎo",english:"early"},
+{char: "山",pinyin: "shān",english:"mountain"},
+{char: "心",pinyin: "xīn",english:"heart"},
+{char: "今天",pinyin: "jīntiān",english:"today"},
+{char: "吃了",pinyin: "chīle",english:"have eaten"},
+{char: "也",pinyin: "yě",english:"and also"},
+{char: "明白",pinyin: "míngbái",english:"understand"},
+{char: "女孩",pinyin: "nǚhái",english:"girl"},
+{char: "男孩",pinyin: "nánhái",english:"boy"},
+{char: "有",pinyin: "yǒu",english:"have"},
+{char: "几个",pinyin: "jǐ gè",english:"several"},
+{char: "左",pinyin: "zuǒ",english:"left"},
+{char: "右",pinyin: "yòu",english:"right"},
+{char: "中间",pinyin: "zhōngjiān",english:"in the middle"},
+{char: "你",pinyin: "nǐ",english:"you"},
+{char: "在",pinyin: "zài",english:"in"},
+{char: "他",pinyin: "tā",english:"he"},
+{char: "不去",pinyin: "bù qù",english:"not going"},
+{char: "和",pinyin: "hé",english:"with"},
+{char: "多",pinyin: "duō",english:"many"},
+{char: "少",pinyin: "shǎo",english:"less"},
+{char: "水",pinyin: "shuǐ",english:"water"},
+{char: "我",pinyin: "wǒ",english:"I"},
+{char: "她",pinyin: "tā",english:"she was"},
+{char: "名字",pinyin: "míngzì",english:"first name"},
+{char: "太阳",pinyin: "tàiyáng",english:"sun"},
+{char: "星星",pinyin: "xīngxīng",english:"star"},
+{char: "是吗?",pinyin: "Shì ma?",english:"Is it?"},
+{char: "可以",pinyin: "kěyǐ",english:"can"},
+{char: "它",pinyin: "tā",english:"it"},
+{char: "只有",pinyin: "zhǐyǒu",english:"only"},
+{char: "头",pinyin: "tóu",english:"head"},
+{char: "儿童",pinyin: "értóng",english:"child"},
+{char: "耳",pinyin: "ěr",english:"ear"},
+{char: "马",pinyin: "mǎ",english:"horse"},
+{char: "木",pinyin: "mù",english:"wood"},
+{char: "土",pinyin: "tǔ",english:"earth"},
+{char: "叶",pinyin: "yè",english:"leaf"},
+{char: "花",pinyin: "huā",english:"flower"},
+{char: "草",pinyin: "cǎo",english:"grass"},
+{char: "火",pinyin: "huǒ",english:"fire"},
+{char: "分开",pinyin: "fēnkāi",english:"separate"},
+{char: "会议",pinyin: "huìyì",english:"meeting"},
+{char: "中午",pinyin: "zhōngwǔ",english:"noon"},
+{char: "半",pinyin: "bàn",english:"half"},
+{char: "好",pinyin: "hǎo",english:"good"},
+{char: "又",pinyin: "yòu",english:"also"},
+{char: "空气",pinyin: "kōngqì",english:"air"},
+{char: "门",pinyin: "mén",english:"door"},
+{char: "拉",pinyin: "lā",english:"Pull"},
+{char: "妈妈",pinyin: "māmā",english:"mother"},
+{char: "爸爸",pinyin: "bàba",english:"father"},
+]
+
+var wordsG1 = [
+{char: "什么",pinyin: "shénme",english:"what"},
+{char: "叫",pinyin: "jiào",english:"call"},
+{char: "字",pinyin: "zì",english:"word"},
+{char: "这个",pinyin: "zhège",english:"this one"},
+{char: "那",pinyin: "nà",english:"that"},
+{char: "哪里",pinyin: "nǎlǐ",english:"where"},
+{char: "哥哥",pinyin: "gēgē",english:"brother"},
+{char: "姐姐",pinyin: "jiějiě",english:"sister"},
+{char: "弟弟",pinyin: "dìdì",english:"little brother"},
+{char: "妹妹",pinyin: "mèimei",english:"little sister"},
+{char: "爷爷",pinyin: "yéyé",english:"grandfather"},
+{char: "奶奶",pinyin: "nǎinai",english:"grandmother"},
+{char: "爱",pinyin: "ài",english:"love"},
+{char: "一样",pinyin: "yīyàng",english:"same"},
+{char: "学校",pinyin: "xuéxiào",english:"school"},
+{char: "社区",pinyin: "shèqū",english:"community"},
+{char: "美国",pinyin: "měiguó",english:"United States"},
+{char: "地方",pinyin: "dìfāng",english:"place"},
+{char: "国家",pinyin: "guójiā",english:"country"},
+{char: "动物",pinyin: "dòngwù",english:"animal"},
+{char: "植物",pinyin: "zhíwù",english:"plant"},
+{char: "他们",pinyin: "tāmen",english:"they"},
+{char: "住在",pinyin: "zhù zài",english:"live"},
+{char: "海",pinyin: "hǎi",english:"sea"},
+{char: "要",pinyin: "yào",english:"want"},
+{char: "河",pinyin: "hé",english:"river"},
+{char: "湖",pinyin: "hú",english:"lake"},
+{char: "球",pinyin: "qiú",english:"ball"},
+{char: "东西",pinyin: "dōngxī",english:"thing"},
+{char: "南",pinyin: "nán",english:"south"},
+{char: "北",pinyin: "běi",english:"north"},
+{char: "⾛",pinyin: "zǒu",english:"walk or leave"},
+{char: "因为",pinyin: "yīnwèi",english:"because"},
+{char: "做作业",pinyin: "zuò zuo yè",english:"do homework"},
+{char: "时钟",pinyin: "shízhōng",english:"clock"},
+{char: "厕所",pinyin: "cèsuǒ",english:"toilet, bathroom, lavatory"},
+{char: "听说",pinyin: "tīng shuō",english:"hearsay"},
+{char: "晚安",pinyin: "wǎn'ān",english:"goodnight"},
+{char: "帮忙",pinyin: "bāngmáng",english:"help"},
+{char: "如果",pinyin: "rúguǒ",english:"if"},
+{char: "朋友",pinyin: "péngyǒu",english:"friend"},
+{char: "还有",pinyin: "hái yǒu",english:"besides, furthermore, and also"},
+{char: "说话",pinyin: "shuōhuà",english:"speak"},
+{char: "但是",pinyin: "dànshì",english:"but"},
+{char: "请问",pinyin: "qǐngwèn",english:"excuse me, please, may I ask you a question?"},
+{char: "来到",pinyin: "lái dào",english:"come"},
+{char: "从来",pinyin: "cónglái",english:"never"},
+{char: "开心",pinyin: "kāixīn",english:"happy"},
+{char: "起来",pinyin: "qǐlái",english:"rise up, get up, get out of bed"},
+{char: "天才",pinyin: "tiāncái",english:"genius"},
+{char: "合作",pinyin: "hézuò",english:"cooperation"},
+{char: "谁",pinyin: "shéi",english:"who"},
+{char: "变形",pinyin: "biànxíng",english:"change shape"},
+{char: "看书",pinyin: "kànshū",english:"read, read books"},
+{char: "颜色",pinyin: "yánsè",english:"color"},
+{char: "想",pinyin: "xiǎng",english:"to think, plan, consider, suppose, guess, reckon, want, wish, desire, miss"},
+{char: "被子",pinyin: "bèizi",english:"quilt"},
+{char: "种子",pinyin: "zhǒngzǐ",english:"seed"},
+{char: "能力",pinyin: "nénglì",english:"ability"},
+{char: "外面",pinyin: "wàimiàn",english:"outside"},
+{char: "很大",pinyin: "hěn dà",english:"very big"},
+{char: "现在",pinyin: "xiànzài",english:"right now"},
+{char: "一些",pinyin: "yīxiē",english:"a few, some"},
+{char: "我都好.",pinyin: "wǒ dū hǎo.",english:"I am fine."},
+{char: "房间",pinyin: "fángjiān",english:"room"},
+{char: "过去",pinyin: "guòqù",english:"past"},
+{char: "长",pinyin: "cháng",english:"long, length"},
+{char: "长大",pinyin: "zhǎngdà",english:"grow up"},
+{char: "比",pinyin: "bǐ",english:"compare, contrast"},
+{char: "高",pinyin: "gāo",english:"high"},
+{char: "岁",pinyin: "suì",english:"year(s) old"},
+{char: "大牙",pinyin: "dàyá",english:"molar, big tooth"},
+{char: "得到",pinyin: "dédào",english:"get"},
+{char: "有用",pinyin: "yǒuyòng",english:"useful"},
+{char: "知道",pinyin: "zhīdào",english:"know"},
+{char: "故事",pinyin: "gùshì",english:"story"},
+{char: "喜欢",pinyin: "xǐhuān",english:"like"},
+{char: "穿衣",pinyin: "chuān yī",english:"dressing"},
+{char: "圆形",pinyin: "yuán xíng",english:"circle"},
+{char: "钱",pinyin: "qián",english:"money"},
+{char: "年",pinyin: "nián",english:"year"},
+{char: "车",pinyin: "chē",english:"car"},
+{char: "前面",pinyin: "qiánmiàn",english:"the front"},
+{char: "后面",pinyin: "hòumiàn",english:"the back"},
+{char: "中文",pinyin: "zhōngwén",english:"Chinese"},
+{char: "每个",pinyin: "měi gè",english:"each"},
+{char: "母亲节",pinyin: "mǔqīn jié",english:"Mother's Day"},
+{char: "吃",pinyin: "chī",english:"eat"},
+{char: "同学",pinyin: "tóngxué",english:"classmate"},
+{char: "没吃",pinyin: "méi chī",english:"did not eat"},
+{char: "记得",pinyin: "jìdé",english:"remember"},
+{char: "伟大",pinyin: "wěidà",english:"great, extraordinary"},
+{char: "很重",pinyin: "hěn zhòng",english:"very heavy"},
+{char: "光",pinyin: "guāng",english:"light, beam, ray, bright, shiny, glory, pride"},
+{char: "声音",pinyin: "shēngyīn",english:"sound"},
+{char: "头带",pinyin: "tóu dài",english:"headband"},
+{char: "季节",pinyin: "jìjié",english:"season"},
+{char: "春天",pinyin: "chūntiān",english:"spring"},
+{char: "夏天",pinyin: "xiàtiān",english:"summer"},
+{char: "秋天",pinyin: "qiūtiān",english:"fall, autumn"},
+{char: "冬天",pinyin: "dōngtiān",english:"winter"},
+{char: "你好吗？",pinyin: "nǐ hǎo ma?",english:"How are you?"},
+{char: "下雨",pinyin: "xià yǔ",english:"raining"},
+{char: "很热",pinyin: "hěn rè",english:"very hot (as in weather)"},
+{char: "很冷",pinyin: "hěn lěng",english:"very cold (as in weather)"},
+{char: "下雪",pinyin: "xià xuě",english:"snowing"},
+]
+
+var wordsChi = [...wordsK, ...wordsG1];
+
+var wordsUsed = [];
+
+var counter = 60;
+
+$('#shijian').hide();
+$('#kaishi').hide();
+$('#xiage').hide();
+ $('#ting').hide();
+ $('#chongzhi').hide();
+ $('#meishi').hide();
+
+$('#timewrap').hide();
+$('#start').hide();
+$('#next').hide();
+ $('#disabled').hide();
+ $('#reset').hide();
+ $('#timeout').hide();
+ $('#bio').hide();
+
+$('#chinese').click(function() {
+  $('#shijian').show();
+  $('#kaishi').show();
+  $('#jishi').show();
+  $('#pinyin').empty().append("请查看规则。 然后点击开始按钮！<br>Please review the rules. Then click on the start button!<br>");
+  $('#chinese').hide();
+  $('#english').hide();
+  $('.rulesyw').hide();
+  $('.ruleszw').show();
+});
+
+$('#english').click(function() {
+  $('#timewrap').show();
+  $('#start').show();
+  $('#timer').show();
+  $('#pinyin').empty().append("Please review the rules.<br>Then click on the start button!");
+  $('#chinese').hide();
+  $('#english').hide();
+  $('.ruleszw').hide();
+  $('.rulesyw').show();
+});
+
+$(".btn-rulesyw").click(function() {
+  $('.ruleszw').hide();
+  $('.rulesyw').show();
+});
+
+$(".btn-ruleszw").click(function() {
+  $('.rulesyw').hide();
+  $('.ruleszw').show();
+});
+
+$("#start").click( function(){
+   $("#start").hide();
+   $('#next').show();
+   $("#pinyin").empty();
+    $("#yingwen").empty();
+   counter = 60;
+   interval = setInterval(function() {
+     counter--;
+    // Display 'counter' wherever you want to display it.
+    if (counter <= 0) {
+     		clearInterval(interval);
+      	$('#timer').hide();
+        $('#timeout').show();
+        $('#next').hide();
+        $('#disabled').show();
+        $('#reset').show();
+        return;
+    }else{
+    	$('#time').text(counter);
+      console.log("Timer --> " + counter);
+    }
+}, 1000);
+  var randomIndex = Math.floor(Math.random() * words.length);
+  var randomWord =  words[randomIndex];
+  var wordDisplayed = $("#char").text(randomWord).val();
+  console.log(randomWord);
+  wordsUsed.push(randomWord);
+  words.splice(randomIndex, 1);
+});
+
+$("#kaishi").click( function(){
+   $("#kaishi").hide();
+   $('#xiage').show();
+   counter = 60;
+   interval = setInterval(function() {
+     counter--;
+    // Display 'counter' wherever you want to display it.
+    if (counter <= 0) {
+     		clearInterval(interval);
+      	$('#jishi').hide();
+        $('#meishi').show();
+        $('#xiage').hide();
+        $('#ting').show();
+        $('#chongzhi').show();
+        return;
+    }else{
+    	$('#miao').text(counter);
+      console.log("Timer --> " + counter);
+    }
+  }, 1000);
+  var randomIndex = Math.floor(Math.random() * wordsChi.length);
+  var randomWord =  wordsChi[randomIndex];
+  var character = randomWord.char
+  var pinyin = randomWord.pinyin;
+  var yingwen = randomWord.english;
+  var wordDisplayed = $("#char").text(character).val();
+  var pinyinDisplayed = $("#pinyin").text(pinyin).val();
+  var englishDisplayed = $("#yingwen").text(yingwen).val();
+  console.log(randomWord);
+  wordsUsed.push(randomWord);
+  wordsChi.splice(randomIndex, 1);
+});
+
+ $("#next").click(function(e){
+    e.preventDefault();
+    var randomIndex = Math.floor(Math.random() * words.length);
+    var randomWord =  words[randomIndex];
+    var wordDisplayed = $("#char").text(randomWord).val();
+    console.log(randomWord);
+    wordsUsed.push(randomWord);
+    words.splice(randomIndex, 1);
+ });
+
+
+$("#xiage").click(function(e){
+    e.preventDefault();
+  var randomIndex = Math.floor(Math.random() * wordsChi.length);
+  var randomWord =  wordsChi[randomIndex];
+  var character = randomWord.char
+  var pinyin = randomWord.pinyin;
+  var yingwen = randomWord.english;
+  var wordDisplayed = $("#char").text(character).val();
+  var pinyinDisplayed = $("#pinyin").text(pinyin).val();
+  var englishDisplayed = $("#yingwen").text(yingwen).val();
+  console.log(randomWord);
+  wordsUsed.push(randomWord);
+  wordsChi.splice(randomIndex, 1);
+});
+
+
+  $("#reset").click(function() {
+    $("#next").hide();
+    $("#disabled").hide();
+    $("#reset").hide();
+    $("#timeout").hide();
+    $("rulesyw").hide();
+    $("ruleszw").hide();
+    $("#char").empty();
+    $("#pinyin").append("Choose a language to start the game!<br>请选择一种语言来开始玩游戏！");
+    $("#time").text("60");
+    $('#chinese').show();
+    $('#english').show();
+  });
+  
+  $("#chongzhi").click(function() {
+    $("#xiage").hide();
+    $("#ting").hide();
+    $("#chongzhi").hide();
+    $("#meishi").hide();
+    $("rulesyw").hide();
+    $("ruleszw").hide();
+    $("#char").empty();
+    $("#pinyin").empty();
+    $("#pinyin").append("Choose a language to start the game!<br>请选择一种语言来开始玩游戏！");
+    $("#yingwen").empty();
+    $("#miao").text("60");
+    $('#chinese').show();
+    $('#english').show();
+  });
+  
+  $('.btn-more').click(function() {
+    $('.btn-more').hide();
+    $('.scroll').show();
+    $('#bio').show();
+  });
+  
+   $('.btn-less').click(function() {
+    $('#bio').hide();
+    $('.btn-more').show();
+    $('.scroll').hide();
+  });
+});
+    </script>
+  </body>
+</html>

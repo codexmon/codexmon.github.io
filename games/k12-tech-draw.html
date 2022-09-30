@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+ <title>Tech Act or Draw</title>
+    <!--Bootstrap CDN-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <style>
+      body {
+        background: #109AA9;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+      }
+      h1 {
+        text-align: center;
+      }
+      #word {
+        border-radius: 100px;
+        border: 1px solid blue;
+        padding: 10px 20px;
+      }
+      #display {
+        padding: 15px 0px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-content: center;
+      }
+      #display * {
+        text-align: center;
+        margin-bottom: 0px;
+        font-size: 1em;
+      }
+      .act {
+        overflow: hidden;
+        max-width: 112.5%;
+      }
+      .table {
+        color: white;
+      }
+      .list-group {
+        color: #8B4A74;
+      }
+      #review {
+        font-size: 1.5em;
+      }
+      #content {
+        font-size: 3em;
+      }
+      #buttons {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+      }
+      table {
+        border-bottom: 1px solid white;
+      }
+      #timewrap, #start, #next, #disabled, #reset, #timeout, .rulesyw, .scroll, #bio {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Virtual Act or Draw Tech Game</h1>
+    <div class="container" id="word">
+      <div class="row text-center rulesyw">
+        <div class="col">
+          <h2>The Rules</h2>
+          <table class="table">
+            <tr>
+              <td>Each player can <b>act</b> or <b>draw</b> out a word or phrase<br>that is related to tech --<br>without speaking or spelling the word.</td>
+              <td>
+                 <ul class="list-group">
+                   <li class="list-group-item"><b>Acting</b>: To ensure viewers can see your gestures, virtual background needs to be turned off.<br>Then mime away!</li>
+                   <li class="list-group-item"><b>Drawing</b>: Share your screen, then select White Board to draw!</li>
+                 </ul>
+               </td>
+            </tr>
+            <tr>
+              <td>The player has two choices:</td>
+              <td>
+                <ul class="list-group">
+                   <li class="list-group-item">Act or draw out the word.</li>
+                   <li class="list-group-item">Pass to select another word to act or draw.</li>
+                 </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>The audience has 60 seconds to guess as many words as they can before ...</td>
+              <td class="list-group">
+              <li class="list-group-item">... the next player takes their turn to act or draw!</li>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="row" id="display">
+        <p id="review">Please review the rules.<br>Then click on the start button!</p>
+        <p id="content"></p>
+        <p id="category"></p>
+      </div>
+  </div>
+   <div class="container">
+     <div class="row">
+        <div class="col text-center" id="timewrap">
+            <span id="timer">
+              <span id="time">60</span> seconds      
+            </span>
+            <h4 id="timeout">Time is up</h4>
+        </div>
+      </div>
+      <div class="row">
+      . <div class="col" id="buttons">
+          <button class="btn btn-success" id="rules">Rules</button>
+          <button class="btn btn-success" id="start">Start</button>
+          <button class="btn btn-primary" id="next">Next Word</button>
+          <button class="btn btn-danger" id="disabled" disabled>Stop</button>
+          <button class="btn btn-primary" id="reset">Next Round</button>
+        </div>
+      </div>
+  </div>
+  <div class="container">
+   <div class="row">
+      <div class="col text-center">
+        <img src="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80" class="img-fluid act" alt="act" />
+      </div>
+      <div class="col text-center" >
+        <img src="https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1334&q=80" class="img-fluid" alt="draw" height="400px"/>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col text-center">
+        <p>©2020 Gloria Ng. All rights reserved. Feedback is welcome <a href="https://docs.google.com/forms/d/e/1FAIpQLSd9XTfUV5aMlQf2oKFeP0KrEy2xhcM38SRQWm_cZtJN5W6euw/viewform" target="_blank">here.</a><br>In memory of my father，吳漢強，吴汉强，Hon Keung Ng (September 28, 1949 - April 28, 2020).<br>Dedicated on this day of September 28, 2020. <span class="btn btn-link btn-more">More</span><span class="scroll">Scroll down to view</span></p>
+        <div id="bio">
+          <h2>Humble Beginnings</h2>
+          <p>My dad grew up in a farming village in Canton province. Electricity was absent. Shoes, if afforded, were shared among his siblings. Paper for homework, if existent, was used and reused. Education was a privilege that his family could not afford beyond grade school. He lost his father when he was three years old, when his father was falsely accused of being anti-Communist and therefore punishable by death. Many meals were ultra-watery rice gruel with bits of yam. He spent many days sleeping outside in the fields with much work to do instead of heading home for bed.</p>
+          <h2>Emigration and Immigration</h2>
+          <p>The shortest distance between China and Hong Kong, which was under British rule at the time, was 4 kilometers of water. That is 4000 meters. He made the trek. Twice. The first time he was deported back. The second time he gained refugee status and was permitted to stay in Hong Kong. He was industrious in all kinds of manual labor, including work in a laundromat. However, it was in sales and manufacturing that he would find much success. A U.S.-based colleague in the import-export industry saw his potential and sponsored him and his family to stay in the U.S.</p>
+          <h2>Computer Sciences</h2>
+          <p>Once my dad got to the U.S., he saw a lot of promise in computer sciences and immediately enrolled in college to pursue a bachelor's degree. It took him 7 years. Due to cultural and language differences, he was unable to get a job in this industry. However, he applied the skills he gained to sales and manufacturing and sold a program to fellow colleagues that would keep track of their inventory, invoicing, and product labeling.</p>
+          <h2>HTML, CSS, JS</h2>
+          <p>What we see on a website is commonly a combination of three things:<br>HTML (markup language), CSS (web technology for styling), JS (scripting language).</p>
+            * If HTML is indeed the structure/house (and my dad has erected a couple of these before — in mainland China);<br>
+            * If CSS is indeed the design and presentation (and my dad does have a knack for functional aesthetics);<br>
+            * If JS is indeed the handyman that builds new rooms and functionalities and given that JS can even add nodes to HTML and inline CSS to these nodes (and my dad has indeed expanded his last place of residence with multiple rooms, multiple bathrooms, an additional kitchen, knocking down walls and building them to move a doorway, etc.);<br>
+          <br>
+          <p>Then my dad, who was exceptional at hacking life, he was JavaScript.</p>
+          <h2>My Father’s Daughter</h2>
+          <p>I considered my dad and me as quite different and on opposite ends of a spectrum because I was very much occupied in the liberal arts for most of my life. As the years go by, I have gained great interest and appreciation in software engineering and how the field can enhance human-computer interaction.</p>
+          <p>After researching some potential word sets for a game I wished to play with kids, I saw the lack of age- and language-appropriate platforms. So I created such a game, making it accessible to speakers of Chinese and English, and customized it for a certain age level. The game you see before you debuted at a graduation party for work. In reflecting about my recent entry into web development, I realize I am very much my father’s daughter.</p>
+          <button class="btn btn-link btn-less">Less</button>
+      </div>
+      </div>
+    </div>
+  </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://apis.google.com/js/api.js?onload=onApiLoad">
+</script>
+    <script>
+      window.addEventListener('load', function() {
+        console.log('Page is loaded');
+      });
+    // Must include:
+    // 1. In this HTML file, the above boiler plate script for event listener
+    // 2. In code.gs, the doGet boiler plate code.
+    // 3. Must Publish to deploy the web app. Dialog box opens:
+       // a. Make sure Project is "New"
+       // b. Make sure only I execute the app so only I need to authorize the scripts.
+       // c. Make sure anyone on the web can access the app.
+   $(document).ready(function(){
+    
+    var words = [{cat: "Computer Basics",word: "computer"},
+{cat: "Computer Basics",word: "monitor"},
+{cat: "Computer Basics",word: "mouse"},
+{cat: "Computer Basics",word: "trackpad"},
+{cat: "Computer Basics",word: "motherboard"},
+{cat: "Computer Basics",word: "RAM"},
+{cat: "Computer Basics",word: "CPU"},
+{cat: "Computer Basics",word: "WiFi"},
+{cat: "Computer Basics",word: "chat"},
+{cat: "Computer Basics",word: "operating system"},
+{cat: "Computer Basics",word: "keyboard"},
+{cat: "Computer Basics",word: "hard drive"},
+{cat: "Computer Basics",word: "graphics card"},
+{cat: "Computer Basics",word: "graphical user interface"},
+{cat: "Computer Basics",word: "directory"},
+{cat: "Computer Basics",word: "folder"},
+{cat: "Computer Basics",word: "file"},
+{cat: "Online 101",word: "white hat"},
+{cat: "G Suite",word: "formula"},
+{cat: "Algorithms",word: "algorithm"},
+{cat: "G Suite",word: "document"},
+{cat: "G Suite",word: "highlight"},
+{cat: "G Suite",word: "bold"},
+{cat: "G Suite",word: "italicize"},
+{cat: "G Suite",word: "slide"},
+{cat: "G Suite",word: "spreadsheet"},
+{cat: "G Suite",word: "data validation"},
+{cat: "G Suite",word: "sorting"},
+{cat: "G Suite",word: "filtering"},
+{cat: "Online 101",word: "browser"},
+{cat: "Online 101",word: "surfing the internet"},
+{cat: "Online 101",word: "TCP/IP"},
+{cat: "Online 101",word: "social media"},
+{cat: "Online 101",word: "cyber attack"},
+{cat: "Online 101",word: "security"},
+{cat: "Online 101",word: "server"},
+{cat: "Online 101",word: "client"},
+{cat: "Computer Basics",word: "laptop"},
+{cat: "Computer Basics",word: "desktop"},
+{cat: "Computer Basics",word: "mobile"},
+{cat: "Computer Basics",word: "tablet"},
+{cat: "Computer Basics",word: "gaming console"},
+{cat: "Online 101",word: "extensions"},
+{cat: "Online 101",word: "bookmark"},
+{cat: "Online 101",word: "cookies"},
+{cat: "Online 101",word: "incognito"},
+{cat: "Online 101",word: "SSL"},
+{cat: "Online 101",word: "protocol"},
+{cat: "Online 101",word: "domain name"},
+{cat: "Online 101",word: "absolute path"},
+{cat: "Online 101",word: "relative path"},
+{cat: "Online 101",word: "directory path"},
+{cat: "Online 101",word: "virus"},
+{cat: "Online 101",word: "worm"},
+{cat: "Online 101",word: "spyware"},
+{cat: "Online 101",word: "adware"},
+{cat: "Online 101",word: "trojan"},
+{cat: "Online 101",word: "rootkit"},
+{cat: "Online 101",word: "phishing"},
+{cat: "Online 101",word: "spoofing"},
+{cat: "Online 101",word: "blue screen of death"},
+{cat: "Online 101",word: "cyber bullying"},
+{cat: "Online 101",word: "private key"},
+{cat: "Online 101",word: "public key"},
+{cat: "SDLC",word: "planning"},
+{cat: "SDLC",word: "analysis"},
+{cat: "SDLC",word: "design"},
+{cat: "SDLC",word: "implementation"},
+{cat: "SDLC",word: "testing"},
+{cat: "SDLC",word: "integration"},
+{cat: "SDLC",word: "maintenance"},
+{cat: "SDLC",word: "MVP"},
+{cat: "SDLC",word: "iteration"},
+{cat: "SDLC",word: "agile"},
+{cat: "SDLC",word: "waterfall"},
+{cat: "SDLC",word: "sprint"},
+{cat: "SDLC",word: "backlog"},
+{cat: "SDLC",word: "burndown chart"},
+{cat: "SDLC",word: "retrospective"},
+{cat: "SDLC",word: "product"},
+{cat: "SDLC",word: "metrics"},
+{cat: "SDLC",word: "ROI (Return On Investment)"},
+{cat: "SDLC",word: "user story"},
+{cat: "SDLC",word: "persona"},
+{cat: "SDLC",word: "marketing requirements"},
+{cat: "SDLC",word: "product requirements"},
+{cat: "SDLC",word: "system requirements"},
+{cat: "SDLC",word: "UX (User Experience)"},
+{cat: "SDLC",word: "UI (User Interface)"},
+{cat: "SDLC",word: "user flow"},
+{cat: "SDLC",word: "prototype"},
+{cat: "SDLC",word: "wireframe"},
+{cat: "SDLC",word: "bug report"},
+{cat: "SDLC",word: "p0"},
+{cat: "HTML",word: "tag"},
+{cat: "HTML",word: "front end"},
+{cat: "HTML",word: "back end"},
+{cat: "HTML",word: "semantics"},
+{cat: "HTML",word: "developer tools"},
+{cat: "HTML",word: "elements"},
+{cat: "HTML",word: "image"},
+{cat: "HTML",word: "text"},
+{cat: "HTML",word: "video"},
+{cat: "HTML",word: "opening tag"},
+{cat: "HTML",word: "closing tag"},
+{cat: "HTML",word: "container tag"},
+{cat: "HTML",word: "empty tag"},
+{cat: "HTML",word: "Visual Studio Code"},
+{cat: "HTML",word: "head"},
+{cat: "HTML",word: "body"},
+{cat: "HTML",word: "nesting"},
+{cat: "HTML",word: "attribute"},
+{cat: "HTML",word: "value"},
+{cat: "HTML",word: "class"},
+{cat: "HTML",word: "id"},
+{cat: "HTML",word: "link"},
+{cat: "HTML",word: "script"},
+{cat: "HTML",word: "table"},
+{cat: "HTML",word: "form"},
+{cat: "HTML",word: "checkbox"},
+{cat: "HTML",word: "radio"},
+{cat: "HTML",word: "date"},
+{cat: "HTML",word: "color"},
+{cat: "HTML",word: "select"},
+{cat: "HTML",word: "option"},
+{cat: "HTML",word: "div"},
+{cat: "HTML",word: "span"},
+{cat: "HTML",word: "iframe"},
+{cat: "CSS",word: "presentation"},
+{cat: "CSS",word: "text decoration"},
+{cat: "CSS",word: "text color"},
+{cat: "CSS",word: "font size"},
+{cat: "CSS",word: "font family"},
+{cat: "CSS",word: "position"},
+{cat: "CSS",word: "selector"},
+{cat: "CSS",word: "selector"},
+{cat: "CSS",word: "property"},
+{cat: "CSS",word: "value"},
+{cat: "CSS",word: "shorthand property"},
+{cat: "CSS",word: "background"},
+{cat: "CSS",word: "width"},
+{cat: "CSS",word: "border"},
+{cat: "CSS",word: "margin"},
+{cat: "CSS",word: "padding"},
+{cat: "CSS",word: "cascading"},
+{cat: "CSS",word: "descendant"},
+{cat: "CSS",word: "pseudo classes"},
+{cat: "CSS",word: "hover"},
+{cat: "CSS",word: "snake case"},
+{cat: "CSS",word: "serif"},
+{cat: "CSS",word: "typography"},
+{cat: "CSS",word: "color picker"},
+{cat: "CSS",word: "viewport"},
+{cat: "CSS",word: "internal CSS"},
+{cat: "CSS",word: "inline CSS"},
+{cat: "CSS",word: "external CSS"},
+{cat: "CSS",word: "layout"},
+{cat: "CSS",word: "block display"},
+{cat: "CSS",word: "inline display"},
+{cat: "CSS",word: "box model"},
+{cat: "CSS",word: "static positioning"},
+{cat: "CSS",word: "relative positioning"},
+{cat: "CSS",word: "absolute positioning"},
+{cat: "CSS",word: "z-index"},
+{cat: "CSS",word: "float"},
+{cat: "CSS",word: "clear"},
+{cat: "CSS",word: "responsive design"},
+{cat: "CSS",word: "media query"},
+{cat: "CSS",word: "breakpoint"},
+{cat: "CSS",word: "viewport width"},
+{cat: "CSS",word: "viewport height"},
+{cat: "CSS",word: "framework"},
+{cat: "CSS",word: "Bootstrap"},
+{cat: "CSS",word: "CDN"},
+{cat: "CSS",word: "container"},
+{cat: "CSS",word: "row"},
+{cat: "CSS",word: "column"},
+{cat: "CSS",word: "grid"},
+{cat: "CSS",word: "Flexbox"},
+{cat: "CSS",word: "flex direction"},
+{cat: "CSS",word: "flex display"},
+{cat: "CSS",word: "flex wrap"},
+{cat: "WordPress",word: "WordPress"},
+{cat: "WordPress",word: "content management system"},
+{cat: "WordPress",word: "dashboard"},
+{cat: "WordPress",word: "theme"},
+{cat: "WordPress",word: "plugin"},
+{cat: "WordPress",word: "server-side code"},
+{cat: "WordPress",word: "database"},
+{cat: "WordPress",word: "MAMP"},
+{cat: "WordPress",word: "Customizer"},
+{cat: "WordPress",word: "Cornerstone"},
+{cat: "WordPress",word: "X theme"},
+{cat: "WordPress",word: "widget"},
+{cat: "WordPress",word: "menu"},
+{cat: "WordPress",word: "editor"},
+{cat: "WordPress",word: "documentation"},
+{cat: "WordPress",word: "content CSS"},
+{cat: "WordPress",word: "global CSS"},
+{cat: "WordPress",word: "content JS"},
+{cat: "WordPress",word: "global JS"},
+{cat: "WordPress",word: "shortcode"},
+{cat: "WordPress",word: "content area"},
+{cat: "WordPress",word: "tooltip"},
+{cat: "WordPress",word: "animation"},
+{cat: "WordPress",word: "jQuery in WordPress"},
+{cat: "WordPress",word: "parallax effect"},
+{cat: "WordPress",word: "tags and categories"},
+{cat: "JavaScript",word: "data types"},
+{cat: "JavaScript",word: "string"},
+{cat: "JavaScript",word: "number"},
+{cat: "JavaScript",word: "boolean"},
+{cat: "JavaScript",word: "array"},
+{cat: "JavaScript",word: "object"},
+{cat: "JavaScript",word: "syntax"},
+{cat: "JavaScript",word: "REPL"},
+{cat: "JavaScript",word: "console"},
+{cat: "JavaScript",word: "interpreter"},
+{cat: "JavaScript",word: "compiler"},
+{cat: "JavaScript",word: "variable"},
+{cat: "JavaScript",word: "declaration"},
+{cat: "JavaScript",word: "initialization"},
+{cat: "JavaScript",word: "camel case"},
+{cat: "JavaScript",word: "assignment operator (=)"},
+{cat: "JavaScript",word: "reserved word"},
+{cat: "JavaScript",word: "let"},
+{cat: "JavaScript",word: "const"},
+{cat: "JavaScript",word: "var"},
+{cat: "JavaScript",word: "alert"},
+{cat: "JavaScript",word: "external JS"},
+{cat: "JavaScript",word: "internal JS"},
+{cat: "JavaScript",word: "prompt"},
+{cat: "JavaScript",word: "concatenation"},
+{cat: "JavaScript",word: "decimal"},
+{cat: "JavaScript",word: "PEMDAS"},
+{cat: "JavaScript",word: "key-value pair"},
+{cat: "JavaScript",word: "dot notation"},
+{cat: "JavaScript",word: "bracket notation"},
+{cat: "JavaScript",word: "nested objects"},
+{cat: "JavaScript",word: "ECMAScript"},
+{cat: "JavaScript",word: "function"},
+{cat: "JavaScript",word: "loop"},
+{cat: "JavaScript",word: "for loop"},
+{cat: "JavaScript",word: "for in loop"},
+{cat: "JavaScript",word: "if-else"},
+{cat: "JavaScript",word: "strictly equal (===)"},
+{cat: "JavaScript",word: "condition"},
+{cat: "JavaScript",word: "incrementation"},
+{cat: "JavaScript",word: "Document Object Model"},
+{cat: "JavaScript",word: "API"},
+{cat: "JavaScript",word: "data"},
+{cat: "JavaScript",word: "event"},
+{cat: "JavaScript",word: "tree"},
+{cat: "JavaScript",word: "node"},
+{cat: "JavaScript",word: "child"},
+{cat: "JavaScript",word: "sibling"},
+{cat: "JavaScript",word: "library"},
+{cat: "JavaScript",word: "method"},
+{cat: "JavaScript",word: "method chaining"},
+    ];
+
+var wordsUsed = [];
+
+var wordsThreepeat = [];
+
+var counter = 60;
+
+$('#rules').click(function() {
+  $('#rules').hide();
+  $('#timewrap').show();
+  $('#start').show();
+  $('#timer').show();
+  $('#review').empty().append("Ready?<br>Click on the start button!");
+  $('.rulesyw').show();
+});
+
+$("#start").click( function(){
+   $("#start").hide();
+   $('.rulesyw').hide();
+   $('#review').hide();
+   $("#content").show();
+   $("#category").show();
+   $('#next').show();
+   counter = 60;
+   interval = setInterval(function() {
+     counter--;
+    // Display 'counter' wherever you want to display it.
+    if (counter <= 0) {
+     		clearInterval(interval);
+      	$('#timer').hide();
+        $('#timeout').show();
+        $('#next').hide();
+        $('#disabled').show();
+        $('#reset').show();
+        return;
+    }else{
+    	$('#time').text(counter);
+      console.log("Timer --> " + counter);
+    }
+}, 1000);
+   var randomIndex = (words.length !== 0 && wordsThreepeat.length === 0) 
+    ? Math.floor(Math.random() * words.length) : (words.length === 0 && wordsUsed.length !== 0) 
+    ? Math.floor(Math.random() * wordsUsed.length): (wordsUsed.length === 0 && wordsThreepeat.length !==0)
+    ? Math.floor(Math.random() * wordsThreepeat.length) : Math.floor(Math.random() * words.length);
+  var randomWord = (words.length !== 0 && wordsThreepeat.length === 0) 
+    ? words[randomIndex] : (words.length === 0 && wordsUsed.length !== 0) 
+    ? wordsUsed[randomIndex] : (wordsUsed.length === 0 && wordsThreepeat.length !== 0)
+    ? wordsThreepeat[randomIndex] : words[randomIndex];
+  var wordDisplayed = $("#content").text(randomWord.word).val();
+  var categoryDisplayed = $("#category").text("Category: ").append(randomWord.cat).val();
+  // console.log(randomWord);
+  if (words.length !== 0 && wordsThreepeat.length === 0) {
+    wordsUsed.push(randomWord);
+    words.splice(randomIndex, 1);
+  } else if (words.length === 0 && wordsUsed.length !== 0) {
+    wordsThreepeat.push(randomWord);
+    wordsUsed.splice(randomIndex, 1);
+  } else if (wordsUsed.length === 0 && wordsThreepeat.length !== 0) {
+    words.push(randomWord);
+    wordsThreepeat.splice(randomIndex, 1);
+  } else {
+    wordsUsed.push(randomWord);
+    words.splice(randomIndex, 1);
+  }
+});
+
+ $("#next").click(function(e){
+    e.preventDefault();
+   var randomIndex = (words.length !== 0 && wordsThreepeat.length === 0) 
+    ? Math.floor(Math.random() * words.length) : (words.length === 0 && wordsUsed.length !== 0) 
+    ? Math.floor(Math.random() * wordsUsed.length): (wordsUsed.length === 0 && wordsThreepeat.length !==0)
+    ? Math.floor(Math.random() * wordsThreepeat.length) : Math.floor(Math.random() * words.length);
+  var randomWord = (words.length !== 0 && wordsThreepeat.length === 0) 
+    ? words[randomIndex] : (words.length === 0 && wordsUsed.length !== 0) 
+    ? wordsUsed[randomIndex] : (wordsUsed.length === 0 && wordsThreepeat.length !==0)
+    ? wordsThreepeat[randomIndex] : words[randomIndex];
+    var wordDisplayed = $("#content").text(randomWord.word).val();
+    var categoryDisplayed = $("#category").text("Category: ").append(randomWord.cat).val();
+    // console.log(randomWord.word, words.length, wordsUsed.length, wordsThreepeat.length);
+  if (words.length !== 0 && wordsThreepeat.length === 0) {
+    wordsUsed.push(randomWord);
+    words.splice(randomIndex, 1);
+  } else if (words.length === 0 && wordsUsed.length !== 0) {
+    wordsThreepeat.push(randomWord);
+    wordsUsed.splice(randomIndex, 1);
+  } else if (wordsUsed.length === 0 && wordsThreepeat !== 0) {
+    words.push(randomWord);
+    wordsThreepeat.splice(randomIndex, 1);
+  } else {
+    wordsUsed.push(randomWord);
+    words.splice(randomIndex, 1);
+  }
+ });
+
+  $("#reset").click(function() {
+    $("#rulesyw").show();
+    $("#start").show();
+    $("#next").hide();
+    $("#disabled").hide();
+    $("#reset").hide();
+    $("#category").hide();
+    $("#timeout").hide();
+    $("rulesyw").hide();
+    $("#review").show();
+    $("#content").empty();
+    $("#time").text("60");
+  });
+  
+  $('.btn-more').click(function() {
+    $('.btn-more').hide();
+    $('.scroll').show();
+    $('#bio').show();
+  });
+  
+   $('.btn-less').click(function() {
+    $('#bio').hide();
+    $('.btn-more').show();
+    $('.scroll').hide();
+  });
+});
+    </script>
+  </body>
+</html>

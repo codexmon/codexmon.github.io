@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Pen Pal Exchange</title>
+    <!--Bootstrap CDN-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <style>
+      body {
+        color: blue;
+      }
+    </style>
+</head>
+  <body>
+  <div class="container-sm">
+<fieldset>
+    <legend>Signup for Pen Pal Exchange</legend>
+  <form>
+  <label for="pal">Name</label>
+    <input type="text" id="pal" name="pal" class="form-control">
+    <br>
+     <label for="gender">Gender</label>
+    <select name="gender" id="gender" class="form-control">
+    <option value="">--Please choose an option--</option>
+    <option value="female">Female</option>
+    <option value="male">Male</option>
+    <option value="male">Other</option>
+    </select>
+    <br>
+    <label for="classname">G5 Class</label>
+    <select name="classname" id="classname" class="form-control">
+    <option value="">--Please choose an option--</option>
+    <option value="elephant">Elephant</option>
+    <option value="giraffe">Giraffe</option>
+    </select>
+    <br>
+    <input type="submit" id="submit" value="Submit" class="btn btn-primary">
+    </form>
+  </fieldset>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    window.addEventListener('load', function() {
+      console.log('Page is loaded');
+    });
+    
+    $(document).ready(function(){
+//There are 2 classes of G5 students. You want to record which student from which G5 class would like to sign up for the pen pal exchange. Solution: You need a signup form for their nmae and their classname.
+
+var pals = []; // this array stores students who opt in through the signup form
+var pairs = [];  // this array stores students paired up to do the pen pal exchange.
+
+  $("#submit").click(function(e){
+    e.preventDefault();
+    var pal = $("#pal").val();
+    var gender =  $("#gender option:selected").text();
+    var classname = $("#classname").val();
+    var g5class = $("#classname option:selected").text();
+    var obj = {
+      "pal": pal,
+      "gender": gender,
+      "classname": g5class 
+              }
+    pals.push(obj);
+    console.log(pals);
+  });
+
+//You want your pen pal exchange to randomly select two people from those who have opted in. You also want to ensure that the paired people are from different G5 classes and different genders.
+
+var pals1 = [{
+  classname: "Elephant",
+  gender: "Male",
+  pal: "Benji"
+}, {
+  classname: "Giraffe",
+  gender: "Male",
+  pal: "Cadence"
+}, {
+  classname: "Giraffe",
+  gender: "Male",
+  pal: "Derrick"
+}, {
+  classname: "Giraffe",
+  gender: "Female",
+  pal: "Eva"
+}, {
+  classname: "Giraffe",
+  gender: "Female",
+  pal: "Sofia"
+}, {
+  classname: "Elephant",
+  gender: "Female",
+  pal: "Fern"
+}, {
+  classname: "Giraffe",
+  gender: "Other",
+  pal: "Greg"
+}, {
+  classname: "Giraffe",
+  gender: "Other",
+  pal: "Hannah"
+}]
+
+function makePair(arr) {
+    var pals2 = [];
+  var randomIndex = Math.floor(Math.random() * arr.length);
+  var randomPal =  arr[randomIndex];
+  console.log(randomIndex);
+  console.log(randomPal);
+  pals2.push(randomPal.pal);
+  console.log(pals2);
+  pals1.splice(randomIndex, 1);
+  randomIndex = Math.floor(Math.random() * arr.length);
+  randomPal =  arr[randomIndex];
+  pals1.splice(randomIndex, 1);
+  pals2.push(randomPal.pal);
+  pairs.push(pals2);
+  console.log(pals2);
+}
+
+function makePairs(arr) {
+  for (var i = 0; i < arr.length; i++) {
+    makePair(arr);
+  }
+  makePair(arr);
+}
+
+makePairs(pals1);
+
+console.log(pals1);
+console.log(pairs);  
+});
+
+
+  </script>
+  </body>
+</html>
+
