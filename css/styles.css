@@ -59,6 +59,32 @@ nav {
   padding-left: 3vw;
 }
 
+.nav-byline {
+  font-size: 0.85rem;
+  opacity: 0.75;
+  transition: opacity 0.3s ease;
+}
+
+.nav-byline:hover {
+  opacity: 1;
+}
+
+@media screen and (max-width: 991px) {
+  /* Prevents the mobile menu from pushing down the background image when expanded */
+  .navbar-collapse {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1050;
+    background-color: rgba(240, 240, 240, 0.98);
+    padding: 1.5rem;
+    border-radius: 20px;
+    margin-top: 10px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+}
+
 /* footer global styling */
 .footer-section {
   height: 50vh;
