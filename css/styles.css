@@ -59,7 +59,7 @@ nav {
   padding-left: 3vw;
 }
 
-.nav-byline {
+nav .nav-byline {
   font-size: 0.85rem;
   opacity: 0.75;
   transition: opacity 0.3s ease;
